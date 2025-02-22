@@ -1,0 +1,3 @@
+{"level":"info","timestamp":"2025-02-22T20:00:35.304+0700","msg":"Application started","author":"Huuloc"}
+{"level":"warn","timestamp":"2025-02-22T20:00:35.304+0700","msg":"This is a warning message"}
+{"level":"error","timestamp":"2025-02-22T20:00:35.304+0700","msg":"An error occurred","error_code":500}

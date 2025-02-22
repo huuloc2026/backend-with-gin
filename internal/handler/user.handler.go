@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"fmt"
+
 	"github.com/gin-gonic/gin"
 	"github.com/huuloc2026/go-backend/internal/service"
 	"github.com/huuloc2026/go-backend/pkg/response"
@@ -19,6 +21,7 @@ func NewUserHandler() *UserHandler {
 // uc -> user controller
 func (uc *UserHandler) GetUserByID(c *gin.Context) {
 	// id := c.Param("id")
+	fmt.Println("- UserHandler executed")
 	response.SuccessResponse(c, 2000, []string{"hello", "loc"})
 
 }
