@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"github.com/huuloc2026/go-backend/internal/routers"
+)
 
 func main() {
-	fmt.Println("Starting Server")
+	r := routers.NewRoute()
+	r.Run()
 }
