@@ -2,10 +2,11 @@ package setting
 
 type Config struct {
 	Server   ServerSetting   `mapstructure:"server"`
-	Database DatabaseSetting `mapstructure:"databases"`
+	Database PostgresSetting `mapstructure:"databases"`
 	Security SecuritySetting `mapstructure:"security"`
+	Logger   LoggerSetting   `mapstructure:"logger"`
 }
-type DatabaseSetting struct {
+type PostgresSetting struct {
 	Host         string `mapstructure:"host"`
 	User         string `mapstructure:"user"`
 	Password     string `mapstructure:"password"`
@@ -17,6 +18,19 @@ type DatabaseSetting struct {
 }
 type ServerSetting struct {
 	Port int `mapstructure:"port"`
+}
+type RedisSetting struct {
+	host string `mapstructure:"host"`
+	port string `mapstructure:"port"`
+	db   int    `mapstructure:"db"`
+}
+type LoggerSetting struct {
+	Level       string `mapstructure:"level"`
+	File_log    string `mapstructure:"file"`
+	Max_Size    int    `mapstructure:"maxSize"`
+	Max_Backups int    `mapstructure:"maxBackups"`
+	Max_Age     int    `mapstructure:"maxAge"`
+	Compress    bool   `mapstructure:"compress"`
 }
 type SecuritySetting struct {
 	JWT JWTSetting `mapstructure:"jwt"`
