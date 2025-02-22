@@ -1,10 +1,9 @@
 package handler
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
 	"github.com/huuloc2026/go-backend/internal/service"
+	"github.com/huuloc2026/go-backend/pkg/response"
 )
 
 type UserHandler struct {
@@ -20,8 +19,6 @@ func NewUserHandler() *UserHandler {
 // uc -> user controller
 func (uc *UserHandler) GetUserByID(c *gin.Context) {
 	// id := c.Param("id")
-	c.JSON(http.StatusOK, gin.H{
-		"message": uc.userService.GetInforUserService(),
-	})
+	response.SuccessResponse(c, 2000, []string{"hello", "loc"})
 
 }
