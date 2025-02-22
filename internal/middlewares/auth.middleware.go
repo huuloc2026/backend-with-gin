@@ -13,7 +13,6 @@ func AuthenticateMiddleware() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
-
 		// TODO: Xác thực token JWT ở đây
 
 		c.Next()

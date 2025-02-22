@@ -1,4 +1,4 @@
-package main
+package initalize
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-func main() {
+func LoadConfig() {
 	viper := viper.New()
 	viper.AddConfigPath("config")
 	viper.SetConfigName("local")
@@ -17,10 +17,8 @@ func main() {
 	err := viper.ReadInConfig()
 	if err != nil {
 		panic(fmt.Errorf("fatal error config file: %w", err))
-
 	}
 	if err := viper.Unmarshal(&global.Config); err != nil {
 		panic(fmt.Errorf("unable to decode into struct, %w", err))
 	}
-
 }
