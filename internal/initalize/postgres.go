@@ -13,9 +13,13 @@ import (
 
 func InitPostgresql() {
 	m := global.Config.Database
-	dsn := "host=%s user=%s  password=%s  dbname=%s  port=%v sslmode=disable search_path=public"
-	var s = fmt.Sprintf(dsn, m.Host, m.User, m.Password, m.DBName, m.Port)
-	db, err := gorm.Open(postgres.Open(s), &gorm.Config{})
+	if m.Host == "" || m.User == "" || m.DBName == "" || m.Port == 0 {
+		panic(fmt.Sprintf("Database config is invalid: %+v", m))
+	}
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=disable search_path=public",
+		m.Host, m.User, m.Password, m.DBName, m.Port,
+	)
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
 	}
@@ -25,7 +29,7 @@ func InitPostgresql() {
 	setPool(global.Mdb)
 	// Tạo schema nếu chưa có
 	db.Exec("CREATE SCHEMA IF NOT EXISTS public;")
-	db.Exec("CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";")
+	// db.Exec("CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";")
 	migrateTables(global.Mdb)
 
 }
@@ -49,6 +53,7 @@ func migrateTables(db *gorm.DB) {
 	// &models.Order{},
 	)
 	if err != nil {
-		panic("Failed to migrate database tables")
+		global.Logger.Error("Database migration failed")
+		panic(fmt.Sprintf("Failed to migrate database tables: %v", err))
 	}
 }

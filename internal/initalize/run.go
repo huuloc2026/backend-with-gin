@@ -1,18 +1,15 @@
 package initalize
 
 import (
-	"fmt"
-
 	"github.com/huuloc2026/go-backend/global"
-	"go.uber.org/zap"
 )
 
 func Run() {
 	// Load configuration
 	LoadConfig()
-	fmt.Println("Loading config...", global.Config.Security.JWT.Key)
+	//fmt.Println("Loading config...", global.Config.Database.Port)
 	InitLogger()
-	global.Logger.Info("Logger initialized", zap.String("author", "Huuloc"))
+	global.Logger.Info("Logger initialized")
 	InitPostgresql()
 	InitRedis()
 	InitRouter()
