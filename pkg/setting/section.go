@@ -8,6 +8,7 @@ type Config struct {
 }
 type PostgresSetting struct {
 	Host         string `mapstructure:"host"`
+	Port         int    `mapstructure:"port"`
 	User         string `mapstructure:"user"`
 	Password     string `mapstructure:"password"`
 	DBName       string `mapstructure:"dbName"`
