@@ -3,6 +3,7 @@ package setting
 type Config struct {
 	Server   ServerSetting   `mapstructure:"server"`
 	Database PostgresSetting `mapstructure:"databases"`
+	Redis    RedisSetting    `mapstructure:"redis"`
 	Security SecuritySetting `mapstructure:"security"`
 	Logger   LoggerSetting   `mapstructure:"logger"`
 }
@@ -21,9 +22,12 @@ type ServerSetting struct {
 	Port int `mapstructure:"port"`
 }
 type RedisSetting struct {
-	host string `mapstructure:"host"`
-	port string `mapstructure:"port"`
-	db   int    `mapstructure:"db"`
+	Host     string `mapstructure:"host"`
+	Port     string `mapstructure:"port"`
+	Db       int    `mapstructure:"db"`
+	MaxConns int    `mapstructure:"maxConns"`
+	Username string `mapstructure:"username"`
+	Password string `mapstructure:"password"`
 }
 type LoggerSetting struct {
 	Level       string `mapstructure:"level"`
